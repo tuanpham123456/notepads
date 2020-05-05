@@ -1,8 +1,8 @@
 @extends('layout.frontend')
 @section('content')
 <div class="box">
-    <div class="box-header">
-      <h3 class="box-title">Ghi chú cá nhân</h3>
+    <div class="box-header" style="background: #B48269">
+      <h3 class="box-title" style="text-align: center">Ghi chú cá nhân</h3>
       <div>
       <a href="{{ route('category.create')}}" class="label label-success">Thêm thuộc tính <i class="fa fa-plus"></i></a>
       </div>
@@ -21,9 +21,9 @@
       </div>
     </div>
     <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
-      <table class="table table-hover">
-        <tbody><tr>
+    <div class="box-body table-responsive no-padding" style="background:#CABEB8">
+      <table class="table ">
+        <tbody class=""><tr>
           <th>ID</th>
           <th>Note</th>
           <th>Content</th>
@@ -58,7 +58,7 @@
     </div>
     <!-- /.box-body -->
   </div>
-    <div class="box-footer">
+    <div class="box-footer" style="background:#B48269">
     {!! $notepads->links() !!}
     </div>
   <!-- /.box -->
