@@ -8,11 +8,10 @@ use App\Models\Notepad;
 use Carbon\Carbon;
 use App\Models\Category;
 use Mockery\Matcher\Not;
-
 class NotepadController extends Controller
 {
     public function index(){
-        $notepads = Notepad::paginate(10);
+        $notepads = Notepad::with('category:id,c_name')->paginate(10);
 
         $viewData = [
             'notepads'   => $notepads
@@ -20,20 +19,26 @@ class NotepadController extends Controller
         return view ('notepad.index',$viewData);
     }
     public function create(){
-        return view ('notepad.create');
+        $categories = Category::all();
+
+
+        return view ('notepad.create',compact('categories'));
     }
     public function store(RequestNotepad $request){
         $data = $request->except('_token');
         $data['np_slug']     = Str::slug($request->np_name);
         $data['created_at']   = Carbon::now();
+        // dd($data);
 
         $id = Notepad::insertGetId($data);
         return redirect()->back();
 
     }
     public function edit($id){
-        $notepads = Notepad::find($id);
-        return view('notepad.update',compact('notepads'));
+        $notepads = Notepad::all();
+
+        $categories = Category::all();
+        return view('notepad.update',compact('notepads','categories'));
 
     }
 

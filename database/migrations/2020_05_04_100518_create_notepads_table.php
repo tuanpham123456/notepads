@@ -17,7 +17,7 @@ class CreateNotepadsTable extends Migration
             $table->bigIncrements('id');
             $table->string('np_name')->nullable();
             $table->string('np_slug')->index()->unique();
-            $table->integer('np_category_id')->default(0);
+            $table->bigInteger('np_category_id')->index()->default(0);
             $table->longText('np_description')->nullable();
 
             $table->timestamps();

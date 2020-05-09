@@ -2,14 +2,17 @@
 @section('content')
 <div class="box">
     <div class="box-header" style="background: #B48269">
+
       <h3 class="box-title" style="text-align: center">Ghi chú cá nhân</h3>
       <div>
+
       <a href="{{ route('category.create')}}" class="label label-success">Thêm thuộc tính <i class="fa fa-plus"></i></a>
       </div>
       <br>
       <div>
       <a href="{{ route('notepad.create')}}" class="label label-warning">Thêm ghi chú <i class="fa fa-plus"></i></a>
       </div>
+
       <div class="box-tools">
         <div class="input-group input-group-sm" style="width: 150px;">
           <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -38,7 +41,7 @@
             <td style="color: #624E17">{{ $notepad->np_name}}</td>
             <td style="color: #00263b">{!! nl2br(e($notepad->np_description)) !!}</td>
 
-            <td><span class="label label-success">{{ $notepad->category->c_name ?? "Laravel" }}</span>
+            <td><span class="label label-success">{{ $notepad->category->c_name ?? "[N\A]" }}</span>
             </td>
             <td>{{ $notepad->created_at}}</td>
 
