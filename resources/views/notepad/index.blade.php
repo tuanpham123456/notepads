@@ -2,8 +2,7 @@
 @section('content')
 <div class="box">
     <div class="box-header" style="background: #B48269">
-
-      <h3 class="box-title" style="text-align: center">Ghi chú cá nhân</h3>
+      <h3 class="box-title label label-default"  style="text-align: center" >Ghi chú cá nhân</h3>
       <div>
 
       <a href="{{ route('category.create')}}" class="label label-success">Thêm thuộc tính <i class="fa fa-plus"></i></a>
@@ -14,18 +13,31 @@
       </div>
 
       <div class="box-tools">
-        <div class="input-group input-group-sm" style="width: 150px;">
-          <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+        <div class="input-group input-group-sm" style="width: 250px;">
+        <input type="text" name="name" class="form-control pull-right" placeholder="Search ..." name="name" value="{{ \Request::get('name')}}">
 
           <div class="input-group-btn">
-            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            <button type="submit" class="btn btn-default" ><i class="fa fa-search"></i></button>
           </div>
+        {{-- <div class="input-group ">
+            <select name="cate">
+                <option value="">Danh mục
+                    @if (isset($categories))
+                        @foreach ($categories as $category )
+                          <option value="{{ $category->id}}" {{\Request::get('cate') == $category->id ?  "selected='selected'" : "" }}>{{$category->c_name}}</option>
+
+                        @endforeach
+
+                    @endif
+                </option>
+            </select>
+        </div> --}}
         </div>
       </div>
     </div>
     <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding" style="background:#CABEB8">
-      <table class="table ">
+    <div class="box-body table-responsive no-padding" style="background:#CABEB8" x>
+      <table class="table">
         <tbody class=""><tr>
           <th>ID</th>
           <th>Note</th>
@@ -37,7 +49,7 @@
         @if($notepads)
         @foreach ($notepads as $notepad )
         <tr>
-            <td>{{ $notepad->id}}</td>
+            <td >{{ $notepad->id}}</td>
             <td style="color: #624E17">{{ $notepad->np_name}}</td>
             <td style="color: #00263b">{!! nl2br(e($notepad->np_description)) !!}</td>
 

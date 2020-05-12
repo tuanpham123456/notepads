@@ -10,23 +10,31 @@ use App\Models\Category;
 use Mockery\Matcher\Not;
 class NotepadController extends Controller
 {
-    public function index(){
-        $notepads = Notepad::with('category:id,c_name')->paginate(10);
+    public function index(Request $request){
+        $notepads = Notepad::with('category:id,c_name');
+        $categories =Category::all();
 
+
+        if ($request->name) $notepads->where('np_name','like','%'.$request->name.'%');
+        // if($request->cate) $notepads->where('np_category_id',$request->cate);
+        $query = Notepad::select("name");
+
+
+        $notepads = $notepads->orderByDesc('id')->paginate(10);
         $viewData = [
-            'notepads'   => $notepads
+            'notepads'   => $notepads,
+            'categories' => $categories
         ];
         return view ('notepad.index',$viewData);
     }
     public function create(){
         $categories = Category::all();
 
-
         return view ('notepad.create',compact('categories'));
     }
     public function store(RequestNotepad $request){
         $data = $request->except('_token');
-        $data['np_slug']     = Str::slug($request->np_name);
+        $data['np_slug']      = Str::slug($request->np_name);
         $data['created_at']   = Carbon::now();
         // dd($data);
 
@@ -35,7 +43,7 @@ class NotepadController extends Controller
 
     }
     public function edit($id){
-        $notepads = Notepad::all();
+        $notepads = Notepad::findOrFail($id);
 
         $categories = Category::all();
         return view('notepad.update',compact('notepads','categories'));
@@ -43,9 +51,10 @@ class NotepadController extends Controller
     }
 
     public function update(RequestNotepad $request ,$id){
-        $notepads           = Notepad::find($id);
-        $data               = $request->except('_token');
-        $data['np_slug']     = Str::slug($request->np_name);
+        $notepads                = Notepad::find($id);
+
+        $data                    = $request->except('_token');
+        $data['np_slug']         = Str::slug($request->np_name);
         $data['updated_at'] = Carbon::now();
 
         $notepads->update($data);

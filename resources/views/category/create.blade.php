@@ -18,6 +18,9 @@
                 <div class="form-group" >
                     <label for="nam">Name <span class="text-danger">(*)</span></label>
                     <input type="text" class="form-control" name="c_name"  placeholder="Name ...">
+                    @if ($errors->first('c_name'))
+                    <span class="text-danger">{{ $errors->first('c_name')}}</span>
+                    @endif
 
                 </div>
             </div>

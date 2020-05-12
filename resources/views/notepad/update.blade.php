@@ -34,17 +34,20 @@
 
                 </div>
             </div>
-            {{-- <div class="col-sm-8">
-                <label class="control-label">Danh mục <b class="col-red">(*)</b></label>
-                <select name="np_category_id" class="form-control ">
-                    <option value="">__Click__</option>
-                    @foreach($categories as $category)
-                    <option>
-                        value="{{ $category->id }}" {{ ($product->pro_category_id ?? 0) == $category->id ? "selected='selected'" : "" }}
-                    </option>
-                    @endforeach
-                </select>
-            </div> --}}
+            <div class="col-sm-8">
+                <div class="form-group ">
+                    <label class="control-label">Danh mục <b class="col-red">(*)</b></label>
+                    <select name="np_category_id" class="form-control ">
+                        <option value="0">__Click__</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ ($notepads->np_category_id ?? 0) == $category->id ? "selected='selected'" : "" }}>
+                        {{  $category->c_name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                </div>
+
             <div class="col-sm-4"></div>
             <div class="col-sm-12">
                 <div class="box-footer text-center">

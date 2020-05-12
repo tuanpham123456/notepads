@@ -24,7 +24,15 @@ class RequestCategory extends FormRequest
     public function rules()
     {
         return [
-            //
+            'c_name'          =>'required|max:190|min:3|unique:category,c_name,'.$this->id,
         ];
     }
+    public function messages()
+    {
+        return [
+            'c_name.required' => 'Dữ liệu không được để trống',
+            'c_name.unique'   => 'Dữ liệu đã tồn tại'
+        ];
+    }
+
 }

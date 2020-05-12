@@ -22,29 +22,40 @@
                 <div class="form-group" >
                     <label for="nam">Name <span class="text-danger">(*)</span></label>
                     <input type="text" class="form-control" name="np_name"  placeholder="Name ...">
-
+                    @if ($errors->first('np_name'))
+                    <span class="text-danger">{{ $errors->first('np_name')}}</span>
+                    @endif
                 </div>
             </div>
+
+
             <div class="col-sm-8">
                 <div class="form-group" >
                     <label for="nam">Description <span class="text-danger">(*)</span></label>
                     <textarea name="np_description" class="form-control"
                     cols="5 " rows="8" autocomplete="off ">
                     </textarea>
-
+                    @if ($errors->first('np_description'))
+                    <span class="text-danger">{{ $errors->first('np_description')}}</span>
+                    @endif
                 </div>
             </div>
+
+
             <div class="col-sm-8">
+            <div class="form-group ">
                 <label class="control-label">Danh mục <b class="col-red">(*)</b></label>
                 <select name="np_category_id" class="form-control ">
-                    <option value="">__Click__</option>
+                    <option value="0">__Click__</option>
                     @foreach($categories as $category)
-                    <option>
+                    <option value="{{ $category->id }}" {{ ($notepads->np_category_id ?? 0) == $category->id ? "selected='selected'" : "" }}>
                     {{  $category->c_name }}
                     </option>
                     @endforeach
                 </select>
             </div>
+            </div>
+
 
 
 
