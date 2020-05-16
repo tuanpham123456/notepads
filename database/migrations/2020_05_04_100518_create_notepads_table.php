@@ -19,7 +19,7 @@ class CreateNotepadsTable extends Migration
             $table->string('np_slug')->index()->unique();
             $table->bigInteger('np_category_id')->index()->default(0);
             $table->longText('np_description')->nullable();
-
+            $table->string('np_link')->nullable();
             $table->timestamps();
         });
     }

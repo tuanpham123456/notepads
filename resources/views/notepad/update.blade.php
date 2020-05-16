@@ -35,6 +35,13 @@
                 </div>
             </div>
             <div class="col-sm-8">
+                <div class="form-group" >
+                    <label for="nam">Link<span class="text-danger">(*)</span></label>
+                    <input type="text" class="form-control" name="np_link"  placeholder="Link ...0"  value="{{ $notepads->np_link ?? old('np_link')}}">
+
+                </div>
+            </div>
+            <div class="col-sm-8">
                 <div class="form-group ">
                     <label class="control-label">Danh mục <b class="col-red">(*)</b></label>
                     <select name="np_category_id" class="form-control ">

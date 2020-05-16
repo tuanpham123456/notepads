@@ -22,7 +22,6 @@ Route::group(['prefix' => '/'],function(){
 
     Route::get('/delete{id}','NotepadController@delete')->name('notepad.delete');
 
-
 });
 
 Route::group(['prefix' => '/'],function(){
@@ -35,4 +34,7 @@ Route::group(['prefix' => '/'],function(){
     // Route::get('/delete{id}','CategoryController@delete')->name('category.delete');
 
 
+
+
 });
+Route::get('/search','pageController@index')->name('search');

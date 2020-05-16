@@ -41,7 +41,13 @@
                 </div>
             </div>
 
+            <div class="col-sm-8">
+                <div class="form-group" >
+                    <label for="nam">Link<span class="text-danger"></span></label>
+                    <input type="text" class="form-control" name="np_link"  placeholder="Link ...">
 
+                </div>
+            </div>
             <div class="col-sm-8">
             <div class="form-group ">
                 <label class="control-label">Danh mục <b class="col-red">(*)</b></label>

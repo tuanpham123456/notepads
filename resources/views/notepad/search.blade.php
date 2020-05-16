@@ -12,8 +12,7 @@
                             <option value="" >Danh mục
                                 @if (isset($categories))
                                     @foreach ($categories as $category )
-                            <option  class="input-group input-group-sm" value="{{ $category->id}}" {{ \Request::get('cate') == $category->id ? "selected='selected'" : ""}}>
-                                {{$category->c_name}}
+                            <option  class="input-group input-group-sm" value="{{ $category->id}}">{{$category->c_name}}
                             </option>
                                     @endforeach
                                 @endif
@@ -78,7 +77,6 @@
     </div>
 
     <div class="box-footer" style="background:#FFCCCC">
-        {!! $notepads->links() !!}
     </div>
     <!-- /.box -->
 </div>
