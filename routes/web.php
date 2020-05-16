@@ -37,4 +37,3 @@ Route::group(['prefix' => '/'],function(){
 
 
 });
-Route::get('/search','pageController@index')->name('search');

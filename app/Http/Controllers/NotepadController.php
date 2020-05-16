@@ -15,6 +15,8 @@ class NotepadController extends Controller
         $categories =Category::all();
 
 
+        if ($request->name) $notepads->where('np_name','like','%'.$request->name.'%');
+        if ($request->cate) $notepads->where('np_category_id',$request->cate);
 
         $notepads = $notepads->orderByDesc('id')->paginate(10);
         $viewData = [

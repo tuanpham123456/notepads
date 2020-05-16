@@ -4,9 +4,9 @@
     <div class="box-header">
         <h3 class="box-title label label-default"  style="text-align: center" ><a href="{{ route('notepad.index')}}">Ghi chú cá nhân</a></h3>
         <div class="box-tools">
-            <form method="get" action="{{route('search')}}">
+            <form method="get" >
                 <div class="input-group input-group-sm" style="width: 300px;">
-                    <input type="text" name="name" class="form-control" placeholder="Search" style="margin-left: -115px">
+                    <input type="text" name="name" class="form-control" placeholder="Search" style="margin-left: -115px" {{ \Request::get('name')}}>
                     <div class="input-group input-group-sm">
                         <select class="form-control " name="cate">
                             <option value="" >Danh mục
