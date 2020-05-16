@@ -40,6 +40,7 @@
         <br>
     </div>
     <div class="form-group ">
+    <div class="">Tổng số: {{$notepads->total()}} ghi chú</div>
 
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding " style="background:#CCCCFF" x>
