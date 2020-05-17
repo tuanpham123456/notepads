@@ -79,7 +79,7 @@
     </div>
 
     <div class="box-footer" style="background:#FFCCCC">
-        {!! $notepads->links() !!}
+        {!! $notepads->appends(Request::all())->links() !!}
     </div>
     <!-- /.box -->
 </div>

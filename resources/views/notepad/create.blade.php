@@ -21,7 +21,7 @@
             <div class="col-sm-8">
                 <div class="form-group" >
                     <label for="nam">Name <span class="text-danger">(*)</span></label>
-                    <input type="text" class="form-control" name="np_name"  placeholder="Name ...">
+                    <input type="text" class="form-control" name="np_name"  placeholder="Name ..." >
                     @if ($errors->first('np_name'))
                     <span class="text-danger">{{ $errors->first('np_name')}}</span>
                     @endif
