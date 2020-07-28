@@ -21,19 +21,9 @@ Route::group(['prefix' => '/'],function(){
     Route::post('/update{id}','NotepadController@update');
 
     Route::get('/delete{id}','NotepadController@delete')->name('notepad.delete');
-
 });
 
 Route::group(['prefix' => '/'],function(){
     Route::get('/createCategory','CategoryController@create')->name('category.create');
     Route::post('/createCategory','CategoryController@store');
-
-    // Route::get('/update{id}','CategoryController@edit')->name('category.update');
-    // Route::post('/update{id}','CategoryController@update');
-
-    // Route::get('/delete{id}','CategoryController@delete')->name('category.delete');
-
-
-
-
 });

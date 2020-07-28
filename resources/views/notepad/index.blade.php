@@ -2,26 +2,24 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title label label-default"  style="text-align: center" ><a href="{{ route('notepad.index')}}">Ghi chú cá nhân</a></h3>
+        <h3 class="box-title label label-default"  style="text-align: center" ><a href="{{ route('notepad.index')}}">{{ __('Ghi chú cá nhân') }}</a></h3>
         <div class="box-tools">
             <form method="get" >
                 <div class="input-group input-group-sm" style="width: 300px;">
                     <input type="text" name="name" class="form-control" placeholder="Search" style="margin-left: -115px" {{ \Request::get('name')}}>
                     <div class="input-group input-group-sm">
                         <select class="form-control " name="cate">
-                            <option value="" >Danh mục
+                            <option value="" >{{ __('Danh mục') }}
                                 @if (isset($categories))
-                                    @foreach ($categories as $category )
-                            <option  class="input-group input-group-sm" value="{{ $category->id}}" {{ \Request::get('cate') == $category->id ? "selected='selected'" : ""}}>
+                                @foreach ($categories as $category )
+                                <option  class="input-group input-group-sm" value="{{ $category->id}}" {{ \Request::get('cate') == $category->id ? "selected='selected'" : ""}}>
                                 {{$category->c_name}}
                             </option>
-                                    @endforeach
-                                @endif
+                            @endforeach
+                            @endif
                             </option>
-
                         </select>
                     </div>
-
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
@@ -31,17 +29,16 @@
     </div>
     <div class="box-header" style="background: #FFCCCC">
         <div>
-            <a href="{{ route('category.create')}}" class="label label-success">Thêm thuộc tính <i class="fa fa-plus"></i></a>
+            <a href="{{ route('category.create')}}" class="label label-success">{{ __('Thêm thuộc tính ') }}<i class="fa fa-plus"></i></a>
         </div>
         <br>
         <div>
-            <a href="{{ route('notepad.create')}}" class="label label-warning">Thêm ghi chú <i class="fa fa-plus"></i></a>
+            <a href="{{ route('notepad.create')}}" class="label label-warning">{{ __('Thêm ghi chú ') }}<i class="fa fa-plus"></i></a>
         </div>
         <br>
     </div>
     <div class="form-group ">
-    <div class="">Tổng số: {{$notepads->total()}} ghi chú</div>
-
+        <div class=""> {{ __('Tổng số:') }}{{$notepads->total()}}{{ __(' ghi chú') }}</div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding " style="background:#CCCCFF" x>
             <table class="table">
@@ -66,8 +63,9 @@
                         </td>
                         <td>{{ $notepad->created_at}}</td>
                         <td>
-                            <a href="{{ route('notepad.update', $notepad->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Update</a>
-                            <a href="{{ route('notepad.delete',$notepad->id)}}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                            <a href="" class="btn btn-xs btn-info js-preview-transaction"><b class="fa fa-eye">{{ __('Code') }}</b></a>
+                            <a href="{{ route('notepad.update', $notepad->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i>{{ __('Update') }}</a>
+                            <a href="{{ route('notepad.delete',$notepad->id)}}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>{{ __('Delete') }}</a>
                         </td>
                     </tr>
                     @endforeach
@@ -77,7 +75,41 @@
         </div>
         <!-- /.box-body -->
     </div>
-
+    <div class="modal fade fade" id="modal-preview-transaction">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">{{ __(' Code') }}<b id="idTransaction"></b></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content">
+                        @foreach ($notepads as $notepad)
+                        <div class="">
+                            {{ __('HTML') }}
+                            <pre>{!! nl2br(e($notepad->np_html)) !!}</pre>
+                        </div>
+                        <div class="">
+                            {{ __('CSS') }}
+                            <pre>{!! nl2br(e($notepad->np_css)) !!}</pre>
+                        </div>
+                        <div class="">
+                            {{ __('JS') }}
+                            <pre>{!! nl2br(e($notepad->np_js)) !!}</pre>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn btn-primary">{{ __('Save changes') }}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     <div class="box-footer" style="background:#FFCCCC">
         {!! $notepads->appends(Request::all())->links() !!}
     </div>
