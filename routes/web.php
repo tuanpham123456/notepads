@@ -21,6 +21,7 @@ Route::group(['prefix' => '/'],function(){
     Route::post('/update{id}','NotepadController@update');
 
     Route::get('/delete{id}','NotepadController@delete')->name('notepad.delete');
+    Route::get('view{id}','NotepadController@getTransactionDetail')->name('ajax.admin.transaction.detail');
 });
 
 Route::group(['prefix' => '/'],function(){

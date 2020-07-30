@@ -30,7 +30,7 @@
                 <div class="form-group" >
                     <label for="nam">{{ __('Description ') }}<span class="text-danger">(*)</span></label>
                     <textarea name="np_description" class="form-control"
-                        cols="5 " rows="8" autocomplete="off ">
+                        cols="3" rows="8" autocomplete="off ">
                     </textarea>
                     @if ($errors->first('np_description'))
                     <span class="text-danger">{{ $errors->first('np_description')}}</span>

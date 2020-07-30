@@ -56,16 +56,10 @@
                 </div>
             </div>
             <div class="col-sm-8">
-                <div class="form-group" >
-                    <label for="nam">{{ __('Link') }}<span class="text-danger">(*)</span></label>
-                    <input type="text" class="form-control" name="np_link"  placeholder="Link ...0"  value="{{ $notepads->np_link ?? old('np_link')}}">
-                </div>
-            </div>
-            <div class="col-sm-8">
                 <div class="form-group ">
                     <label class="control-label">{{ __('Danh mục ') }}<b class="col-red">(*)</b></label>
                     <select name="np_category_id" class="form-control ">
-                        <option value="0">'__Click__'</option>
+                        <option value="0">__Click__</option>
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ ($notepads->np_category_id ?? 0) == $category->id ? "selected='selected'" : "" }}>
                         {{  $category->c_name }}
@@ -74,6 +68,13 @@
                     </select>
                 </div>
             </div>
+            <div class="col-sm-8">
+                <div class="form-group" >
+                    <label for="nam">{{ __('Link') }}<span class="text-danger">(*)</span></label>
+                    <input type="text" class="form-control" name="np_link"  placeholder="Link ...0"  value="{{ $notepads->np_link ?? old('np_link')}}">
+                </div>
+            </div>
+
             <div class="col-sm-4"></div>
             <div class="col-sm-12">
                 <div class="box-footer text-center">

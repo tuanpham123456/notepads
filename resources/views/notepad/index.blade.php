@@ -44,9 +44,10 @@
             <table class="table">
                 <tbody class="">
                     <tr>
+
                         <th>ID</th>
                         <th>Note</th>
-                        <th>Content</th>
+                        <th class="col-md-3">Content</th>
                         <th>Link</th>
                         <th>Type</th>
                         <th>Date</th>
@@ -63,52 +64,52 @@
                         </td>
                         <td>{{ $notepad->created_at}}</td>
                         <td>
-                            <a href="" class="btn btn-xs btn-info js-preview-transaction"><b class="fa fa-eye">{{ __('Code') }}</b></a>
+
+                            <a href="" class="btn btn-xs btn-info " data-toggle="modal" data-target="#myModal{{$notepad->id}}"><b class="fa fa-eye">{{ __('Code') }}</b></a>
                             <a href="{{ route('notepad.update', $notepad->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i>{{ __('Update') }}</a>
                             <a href="{{ route('notepad.delete',$notepad->id)}}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>{{ __('Delete') }}</a>
                         </td>
                     </tr>
+                    {{-- modal --}}
+                    <div id="myModal{{$notepad->id}}" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span></button>
+                                    <h4 class="modal-title">{{ __(' Code') }}<b id="idTransaction"></b></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="content">
+                                        <div class="">
+                                            {{ __('HTML') }}
+                                            <pre >{!! nl2br(e($notepad->np_html)) !!}</pre>
+                                        </div>
+                                        <div class="">
+                                            {{ __('CSS') }}
+                                            <pre >{!! nl2br(e($notepad->np_css)) !!}</pre>
+                                        </div>
+                                        <div class="">
+                                            {{ __('JS') }}
+                                            <pre>{{ $notepad->np_js }}</pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{ __('Back') }}</button>
+                                    <button type="button" class="btn btn-primary">{{ __('Save changes') }}</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                    </div>
                     @endforeach
                     @endif
                 </tbody>
             </table>
         </div>
         <!-- /.box-body -->
-    </div>
-    <div class="modal fade fade" id="modal-preview-transaction">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">{{ __(' Code') }}<b id="idTransaction"></b></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="content">
-                        @foreach ($notepads as $notepad)
-                        <div class="">
-                            {{ __('HTML') }}
-                            <pre>{!! nl2br(e($notepad->np_html)) !!}</pre>
-                        </div>
-                        <div class="">
-                            {{ __('CSS') }}
-                            <pre>{!! nl2br(e($notepad->np_css)) !!}</pre>
-                        </div>
-                        <div class="">
-                            {{ __('JS') }}
-                            <pre>{!! nl2br(e($notepad->np_js)) !!}</pre>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="button" class="btn btn-primary">{{ __('Save changes') }}</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
     </div>
     <div class="box-footer" style="background:#FFCCCC">
         {!! $notepads->appends(Request::all())->links() !!}
