@@ -78,7 +78,7 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-12">
                 <div class="box-footer text-center">
-                    <a href="" class="btn btn-danger"><i class="fa fa-undo"></i> {{ __('Quay lại') }}</a>
+                    <a href="{{ route('notepad.index') }}" class="btn btn-danger"><i class="fa fa-undo"></i> {{ __('Quay lại') }}</a>
                     <button type="submit" class="btn btn-success">{{ __('Lưu dữ liệu') }}<i class="fa fa-save"></i></button>
                 </div>
             </div>
