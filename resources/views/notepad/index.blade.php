@@ -2,11 +2,11 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title label label-default"  style="text-align: center" ><a href="{{ route('notepad.index')}}">{{ __('Ghi chú cá nhân') }}</a></h3>
+        <h3 class="box-title label label-default"><a href="{{ route('notepad.index')}}">{{ __('Ghi chú cá nhân') }}</a></h3>
         <div class="box-tools">
             <form method="get" >
                 <div class="input-group input-group-sm" style="width: 300px;">
-                    <input type="text" name="name" class="form-control" placeholder="Search" style="margin-left: -115px" {{ \Request::get('name')}}>
+                    <input type="text" name="name" class="form-control" placeholder="Search note ..." style="margin-left: -115px" {{ \Request::get('name'), }}>
                     <div class="input-group input-group-sm">
                         <select class="form-control " name="cate">
                             <option value="" >{{ __('Danh mục') }}
@@ -20,8 +20,8 @@
                             </option>
                         </select>
                     </div>
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <div class="input-group-btn" >
+                        <button type="submit" class="btn btn-default" ><i class="fa fa-search"></i></button>
                     </div>
                 </div>
             </form>
@@ -44,10 +44,18 @@
             <table class="table">
                 <tbody class="">
                     <tr>
-
                         <th>ID</th>
                         <th>Note</th>
-                        <th class="col-md-3">Content</th>
+                        <th class="col-md-3">
+                            <div class="col-md-2"> Content:
+                            </div>
+                            <div class="col-md-10">
+                                <form method="get" >
+                                    <input type="text" style="height: 27px;border-radius: 25px;margin-top: -4px;"
+                                    name="np_description" class="form-control" placeholder="Search content ..."{{ \Request::get('np_description'), }}>
+                                </form>
+                            </div>
+                        </th>
                         <th>Link</th>
                         <th>Type</th>
                         <th>Date</th>
@@ -64,13 +72,34 @@
                         </td>
                         <td>{{ $notepad->created_at}}</td>
                         <td>
-
                             <a href="" class="btn btn-xs btn-info " data-toggle="modal" data-target="#myModal{{$notepad->id}}"><b class="fa fa-eye">{{ __('Code') }}</b></a>
                             <a href="{{ route('notepad.update', $notepad->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i>{{ __('Update') }}</a>
                             <a href="{{ route('notepad.delete',$notepad->id)}}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>{{ __('Delete') }}</a>
                         </td>
                     </tr>
-                    {{-- modal --}}
+                    @if($notepad->np_html == [] && $notepad->np_css == [] && $notepad->np_js == [])
+                    {
+                    <div id="myModal{{$notepad->id}}" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span></button>
+                                    <h4 class="modal-title">{{ __(' Code') }}<b id="idTransaction"></b></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="content">
+                                        Chưa có dữ liệu thêm vào =)))
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{ __('Back') }}</button>
+                                    <button type="button" class="btn btn-primary">{{ __('Save changes') }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }@else{
                     <div id="myModal{{$notepad->id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -95,7 +124,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{ __('Back') }}</button>
                                     <button type="button" class="btn btn-primary">{{ __('Save changes') }}</button>
@@ -104,6 +132,8 @@
                             <!-- /.modal-content -->
                         </div>
                     </div>
+                    }
+                    @endif
                     @endforeach
                     @endif
                 </tbody>
