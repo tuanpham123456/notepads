@@ -25,7 +25,7 @@ class RequestNotepad extends FormRequest
     {
         return [
             'np_name'            =>'required|max:190|unique:notepads,np_name,'.$this->id,
-            'np_description'     => 'required'.$this->id,
+            'np_description'     => 'required',
 
         ];
     }
