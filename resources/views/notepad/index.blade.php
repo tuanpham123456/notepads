@@ -74,7 +74,7 @@
                         <td>
                             <a href="" class="btn btn-xs btn-info " data-toggle="modal" data-target="#myModal{{$notepad->id}}"><b class="fa fa-eye">{{ __('Code') }}</b></a>
                             <a href="{{ route('notepad.update', $notepad->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i>{{ __('Update') }}</a>
-                            <a href="{{ route('notepad.delete',$notepad->id)}}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>{{ __('Delete') }}</a>
+                            <a id="delete" href="{{ route('notepad.delete',$notepad->id)}}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>{{ __('Delete') }}</a>
                         </td>
                     </tr>
                     @if($notepad->np_html == [] && $notepad->np_css == [] && $notepad->np_js == [])
