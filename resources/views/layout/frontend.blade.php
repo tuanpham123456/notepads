@@ -127,7 +127,6 @@
             }
             toastr["success"]("Cập nhật dữ liệu thành công!")
         })
-
     </script>
     </body>
 </html>

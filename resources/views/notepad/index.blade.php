@@ -47,7 +47,7 @@
                         <th>ID</th>
                         <th>Note</th>
                         <th class="col-md-3">
-                            <div class="col-md-2"> Content:
+                            <div class="col-md-2" > Content:
                             </div>
                             <div class="col-md-10">
                                 <form method="get" >
